@@ -47,8 +47,8 @@ const Share = props => (
     <div className="copy">
       Copy This Link
       <div className="link">
-        <input id="url" className="url" type="text" value={`${window.location.href.split('/s')[0]}/survey/${props.id}/answer`} readOnly />
-        <ClipboardButton data-clipboard-target="#url"><Clipboard /></ClipboardButton>
+        <input id="url" className="url" type="text" value={`${window.location}/${props.id}/answer`} readOnly />
+        <ClipboardButton className="copybtn" data-clipboard-target="#url"><Clipboard className="clipboard" /></ClipboardButton>
       </div>
       Use the button to copy the link
     </div>
@@ -95,9 +95,10 @@ const SurveyList = props => (
       <Header {...props} />
       <h1>Surveys</h1>
       <div className="list">
-        {_.map(props.surveys, (survey, i) =>
-          <SurveyItem key={survey.id} id={survey.id} {...survey} {...props} index={i} />)
-        }
+        { Object.keys(props.surveys).length ?
+          _.map(props.surveys, (survey, i) =>
+            <SurveyItem key={survey.id} id={survey.id} {...survey} {...props} index={i} />)
+        : <h3 className={'no-surveys'}>No surveys</h3> }
       </div>
       <FloatingActionButton
         className="floatingActionButton"
