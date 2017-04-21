@@ -19,7 +19,7 @@ export function signin(state = [], action) {
       });
 
     case 'UPDATE_STATE':
-      return action.signin;
+      return action.snackbar;
     default:
       return state;
   }
